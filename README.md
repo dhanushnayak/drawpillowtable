@@ -6,6 +6,11 @@ It used to draw a table in your pillow image by taking data, coordinates font et
 pip install pillowdrawtable
 ```
 
+Formats
+  data format = [(1,0,1),(10,2,5)]
+  font_path is a path of downloaded font from open resource
+  
+
 ## Code Snippet 
 
 ```python
