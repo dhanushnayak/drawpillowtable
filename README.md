@@ -7,8 +7,8 @@ pip install pillowdrawtable
 ```
 
 Formats
-  data format = [(1,0,1),(10,2,5)]
-  font_path is a path of downloaded font from open resource
+- data format = [(1,0,1),(10,2,5)]
+- font_path is a path of downloaded font from open resource
   
 
 ## Code Snippet 
