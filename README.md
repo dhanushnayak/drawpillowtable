@@ -42,7 +42,7 @@ table.draw_table()
 
 ## Output
 
-<img src="https://raw.githubusercontent.com/dhanushnayak/drawpillowtable/main/output/outputtable.png" width=100px>
+<img src="https://raw.githubusercontent.com/dhanushnayak/drawpillowtable/main/output/outputtable.png" width=70%>
 
 ## License
 Copyright (c) 2022 Dhanush Nayak
