@@ -42,7 +42,7 @@ table.draw_table()
 
 ## Output
 
-<p align="center">
+<p align="center" width="100%">
 <img src="https://raw.githubusercontent.com/dhanushnayak/drawpillowtable/main/output/outputtable.png" width=50%>  
 <img src="https://raw.githubusercontent.com/dhanushnayak/drawpillowtable/main/output/outputtable1.png" width=50%>
 </p>
