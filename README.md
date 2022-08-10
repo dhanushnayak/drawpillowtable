@@ -15,7 +15,7 @@ Formats
 
 ```python
 import PIL
-text_font =   PIL.ImageFont.truetype("arial.ttf", 16)
+text_font =   PIL.ImageFont.truetype("arial.ttf", 16) #PIL.ImageFont.truetype(FONT_PATH,FONTSIZE)
 header_font =   PIL.ImageFont.truetype("arial.ttf", 16)
 tdata= [("1",'2'),("19",100),("20",10)]
 table = Drawtable(data=tdata,
