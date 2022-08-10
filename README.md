@@ -39,6 +39,9 @@ table = Drawtable(data=tdata,
                  )
 table.draw_table()
 ```
+
+## Output
+
 ![plot](./output/outputtable.png)
 ![plot](./output/outputtable1.png)
 ![plot](./output/outputtable2.png)
