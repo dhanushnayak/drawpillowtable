@@ -15,12 +15,12 @@ Formats
 
 ```python
 import PIL
-text_font =   PIL.ImageFont.truetype("./arial.ttf", 16)
-header_font =   PIL.ImageFont.truetype("./arial.ttf", 16)
+text_font =   PIL.ImageFont.truetype("arial.ttf", 16)
+header_font =   PIL.ImageFont.truetype("arial.ttf", 16)
 tdata= [("1",'2'),("19",100),("20",10)]
 table = Drawtable(data=tdata,
                   x=60,
-                xend=400,
+                  xend=400,
                   y=80,
                   font=text_font,
                   line_spacer=10,
@@ -42,7 +42,7 @@ table.draw_table()
 
 ## Output
 
-<img src="https://raw.githubusercontent.com/dhanushnayak/drawpillowtable/main/output/outputtable.png" width=50%> <img src="https://raw.githubusercontent.com/dhanushnayak/drawpillowtable/main/output/outputtable1.png" width=50%>
+<img src="https://raw.githubusercontent.com/dhanushnayak/drawpillowtable/main/output/outputtable.png" width=50%> | <img src="https://raw.githubusercontent.com/dhanushnayak/drawpillowtable/main/output/outputtable1.png" width=50%>
 
 ## License
 Copyright (c) 2022 Dhanush Nayak
