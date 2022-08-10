@@ -15,26 +15,30 @@ Formats
 
 ```python
 import PIL
-from pillowdrawtable.drawtable import Drawtable
-text_font =   PIL.ImageFont.truetype("font_path", 100)
-header_font =   PIL.ImageFont.truetype("font_path", 90)
-table = Drawtable(data=data,
+text_font =   PIL.ImageFont.truetype("./arial.ttf", 16)
+header_font =   PIL.ImageFont.truetype("./arial.ttf", 16)
+tdata= [("1",'2'),("19",100),("20",10)]
+table = Drawtable(data=tdata,
                   x=60,
+                xend=400,
                   y=80,
                   font=text_font,
-                  line_spacer=50,
-                  margin_text=60,
-                  image_width=5000,
-                  image_height=1000,
-                  frame=False,
-                  grid=False,
-                  columngrid=True,
+                  line_spacer=10,
+                  margin_text=10,
+                  image_width=500,
+                  image_height=300,
+                  frame=True,
+                  grid=True,
+                  columngrid=False,
                   rowgrid=False,
                   header=True,
-                  headerfont=header_font)
+                  text_color='green',
+                  header_color='red',
+                  headerfont=header_font,
+                  save="outputtable2.png"
+                 )
 table.draw_table()
-
 ```
-
+![plot](./output/outputtable.png)
 ## License
 Copyright (c) 2022 Dhanush Nayak

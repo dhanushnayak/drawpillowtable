@@ -7,7 +7,7 @@ README = (HERE / "README.md").read_text()
 
 setup(
     name='pillowdrawtable',
-    version='0.0.1',
+    version='0.1.4',
     license='MIT',
     description="Draw a table in pillow image",
     long_description=README,
