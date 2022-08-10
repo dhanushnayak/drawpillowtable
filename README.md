@@ -42,6 +42,6 @@ table.draw_table()
 
 ## Output
 
-![image](./output/outputtable.png | width=100)
+![plot](./output/outputtable.png) | ![plot](./output/outputtable1.png) | ![plot](./output/outputtable2.png)
 ## License
 Copyright (c) 2022 Dhanush Nayak
