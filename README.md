@@ -45,6 +45,7 @@ table.draw_table()
 <p align="center" width="100%">
 <img width="30%"src="https://raw.githubusercontent.com/dhanushnayak/drawpillowtable/main/output/outputtable.png">  
 <img width="30%" src="https://raw.githubusercontent.com/dhanushnayak/drawpillowtable/main/output/outputtable1.png">
+<img width="30%" src="https://raw.githubusercontent.com/dhanushnayak/drawpillowtable/main/output/outputtable2.png">
 </p>
 
 ## License
