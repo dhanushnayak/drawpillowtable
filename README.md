@@ -42,6 +42,6 @@ table.draw_table()
 
 ## Output
 
-![plot](./output/outputtable.png){:height="36px" width="36px"} | ![plot](./output/outputtable1.png){:height="36px" width="36px"}. | ![plot](./output/outputtable2.png){:height="36px" width="36px"}.
+![image](./output/outputtable.png | width=100)
 ## License
 Copyright (c) 2022 Dhanush Nayak
