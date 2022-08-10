@@ -1,6 +1,7 @@
 from PIL import Image,ImageDraw,ImageFont
 import textwrap
 from PIL import *
+import PIL
 class Drawtable:
     """
     Use to create or draw table using PILLOW
@@ -37,6 +38,9 @@ class Drawtable:
         
     """
     def __init__(self,data,x,y,font,drawsheet=None,xend=None,line_spacer=20,margin_text=10,line_width=2,return_params=False,**kwargs):
+        
+        self.__version__ = "0.1.4.1"
+
         image_width,image_height=0,0
         if type(font) != PIL.ImageFont.FreeTypeFont:raise ValueError("Font type expected to be Pillow Font eg : h2_font=   ImageFont.truetype('TimesNewRoman/times new roman.ttf', font_size)'")
         if not isinstance(data,list): raise ValueError("data must be a list eg: [(1,2),(2,3)]")
