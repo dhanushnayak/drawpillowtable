@@ -15,6 +15,7 @@ class Drawtable:
         xend(int)(optional): x co-ordinate to end the table at xend pointx starts from x and ends at xend
         line_spacer(int)(optional): linespace from line to other from ceil text
         margin_text(int)(optional): helps to align the text in ceil
+        columnwidth(list)(optional): helps to provide width per ceil custom way, columnwidth must be list eg: [0.1,0.9] and sum must be 1
         line_width(int)(optional): helps to thicker the lines of tables
         return_params(bool)(optional): works for drawsheet to  return the start_x,start_y,end_x,end_y co-ordinates after drawing table on sheet
         
@@ -24,7 +25,6 @@ class Drawtable:
                 create a new image
                 image_width(int)(optional): helps to create new image with width
                 image_height(int)(optional): helps to create new image with height
-
             Custom style drawing:
                 frame(bool)(default: True): helps only to draw frame
                 grid(bool)(default: True): helps to draw innergrid in frame
@@ -64,11 +64,6 @@ class Drawtable:
         self.header_color = kwargs.get("header_color","#000000")
         self.text_color = kwargs.get("text_color","#000000")
         self.save = kwargs.get("save",None)
-        if self.columns_width is not None: 
-            if isinstance(self.columns_width,list) and sum(self.columns_width)==1: 
-                self.width_per_cell = self.columns_width
-            
-            else: raise("columnwidth must be list eg: [0.1,0.9] and sum must be 1")
         self.return_params  = return_params
         self.font = font
         self.new_img=False
@@ -85,8 +80,12 @@ class Drawtable:
         if drawsheet is not None : 
             self.__draw= drawsheet
             width = xend-x
+            if self.columns_width is not None: 
+                if isinstance(self.columns_width,list) and sum(self.columns_width)==1:
+                    self.__width_per_cell = [int(width*wi) for wi in self.columns_width]
+                else: raise ValueError("columnwidth must be list eg: [0.1,0.9] and sum must be 1")
             if self.columns_width is None:
-                self.__width_per_cell = int(width/self.number_of_columns)
+                self.__width_per_cell = [int(width/self.number_of_columns)]*len(self.data)
         else:
             if image_height!=0 and image_width!=0: 
                 if self.xend is not None and self.xend>image_width: raise ValueError("xend must be lesser than image_width")
@@ -94,11 +93,15 @@ class Drawtable:
                 self.__test_back =Image.new('RGBA', (image_width, image_height), (255, 255, 255, 255))
                 self.__draw = ImageDraw.Draw(self.__test_back)
                 if self.xend is None: self.xend = image_width-self.x_init
+                width = self.xend-self.x_init
+                if self.columns_width is not None: 
+                    if isinstance(self.columns_width,list) and sum(self.columns_width)==1:
+                        self.__width_per_cell = [int(width*wi) for wi in self.columns_width]
+                    else: raise ValueError("columnwidth must be list eg: [0.1,0.9] and sum must be 1")
                 if self.columns_width is None:
-                    width = self.xend-self.x_init
-                    self.__width_per_cell = int(width/self.number_of_columns) 
+                    self.__width_per_cell = [int(width/self.number_of_columns)]*len(self.data)
         
-                
+        print(self.__width_per_cell,'w')
           
     def __repr__(self):
         return "Drawtable"
@@ -128,7 +131,6 @@ class Drawtable:
                 create a new image
                 image_width(int)(optional): helps to create new image with width
                 image_height(int)(optional): helps to create new image with height
-
             Custom style drawing:
                 frame(bool)(default: True): helps only to draw frame
                 grid(bool)(default: True): helps to draw innergrid in frame
@@ -160,17 +162,17 @@ class Drawtable:
                     h_c= []
                     if row_idx==0 and self.outer_frame: self.__draw_line(self.x_init,self.y_rate-int(self.line_spacer//2),self.xend,self.y_rate-int(self.line_spacer//2)) #horizontal
                     for num_columns,j in enumerate(row):
-                        lines = textwrap.wrap(str(j),width=((self.__width_per_cell)-(self.margin)))
+                        lines = textwrap.wrap(str(j),width=((self.__width_per_cell[num_columns])-(self.margin)))
                         cur_h=self.y_rate  
                         for idx,line in enumerate(lines): 
                             if row_idx==0 and self.header_frame:
                                 width, height = self.header_font.getsize(line)
-                                xy=self.x_init+self.margin+(num_columns*self.__width_per_cell),cur_h
+                                xy=self.x_init+self.margin+(sum(self.__width_per_cell[:num_columns])),cur_h
                                 self.__draw_text(xy,text=line,font=self.header_font,fill=self.header_color)
                                 cur_h+=height
                             else:
                                 width, height = self.font.getsize(line)
-                                xy=self.x_init+self.margin+(num_columns*self.__width_per_cell),cur_h
+                                xy=self.x_init+self.margin+(sum(self.__width_per_cell[:num_columns])),cur_h
                                 self.__draw_text(xy,text=line,fill=self.text_color)
                                 cur_h+=height
                         h_c.append(cur_h)
@@ -188,7 +190,7 @@ class Drawtable:
                 if self.inner_frame or self.columns_frame:
                     for  col in range(self.number_of_columns+1):
                         if (col==0 or col==self.number_of_columns)  and self.outer_frame==False:continue
-                        else:self.__draw_line(self.x_init+int(col*self.__width_per_cell),self.y_init-int(self.line_spacer//2),self.x_init+int(col*self.__width_per_cell),self.y_rate-int(self.line_spacer//2))
+                        else:self.__draw_line(self.x_init+int(sum(self.__width_per_cell[:col])),self.y_init-int(self.line_spacer//2),self.x_init++int(sum(self.__width_per_cell[:col])),self.y_rate-int(self.line_spacer//2))
 
                 if self.return_params:
                     return self.x_init,self.y_init,self.xend,self.y_rate-int(self.line_spacer//2)
@@ -201,7 +203,6 @@ class Drawtable:
                         self.__test_back.save(save)
                         print(f"Image saved as {save}")
                     return self.__test_back.show()
-                
                 
                 
             except:

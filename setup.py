@@ -7,7 +7,7 @@ README = (HERE / "README.md").read_text()
 
 setup(
     name='pillowdrawtable',
-    version='0.1.4.1',
+    version='0.1.5',
     license='MIT',
     description="Draw a table in pillow image",
     long_description=README,
@@ -20,7 +20,7 @@ setup(
     url='https://github.com/dhanushnayak/drawpillowtable',
     keywords='Pillow,Table',
     install_requires=[
-          'Pillow==9.0.1',
+          'Pillow>8',
       ],
 
 )
