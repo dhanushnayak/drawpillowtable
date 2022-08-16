@@ -7,7 +7,7 @@ README = (HERE / "README.md").read_text()
 
 setup(
     name='pillowdrawtable',
-    version='0.1.5',
+    version='0.1.6',
     license='MIT',
     description="Draw a table in pillow image",
     long_description=README,
@@ -21,6 +21,9 @@ setup(
     keywords='Pillow,Table',
     install_requires=[
           'Pillow>8',
+          "json"
       ],
+    include_package_data=True,
+    package_data={'': ['*.ttf']},
 
 )

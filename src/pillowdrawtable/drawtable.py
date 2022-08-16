@@ -10,7 +10,8 @@ class Drawtable:
         data(list): template for data eg: [(a,b),(c,d)] the length of columns must be sample such as data[i] length must be same foe n
         x(int): X starting co-ordinate 
         y(int): Y starting co-ordinate
-        font(PILLOW FONT): eg ImageFont.truetype('TimesNewRoman/times new roman.ttf', font_size)
+        font(PILLOW FONT)(optional)(default)(ARIAL): eg ImageFont.truetype('TimesNewRoman/times new roman.ttf', font_size)
+        font_size(int)(optional)(default = 16): font_size of with default 16 
         drawsheet(PIllow.ImageDRAW object)(optional): Image draw object on which table is drawn
         xend(int)(optional): x co-ordinate to end the table at xend pointx starts from x and ends at xend
         line_spacer(int)(optional): linespace from line to other from ceil text
@@ -37,11 +38,13 @@ class Drawtable:
                 save(filename) (default: None): if trying to draw on new image to save a image save holds the filename
         
     """
-    def __init__(self,data,x,y,font,drawsheet=None,xend=None,line_spacer=20,margin_text=10,line_width=2,return_params=False,**kwargs):
+    def __init__(self,data,x,y,font=None,font_size=16,drawsheet=None,xend=None,line_spacer=20,margin_text=10,line_width=2,return_params=False,**kwargs):
         
-        self.__version__ = "0.1.4.1"
+        self.__version__ = "0.1.6"
 
         image_width,image_height=0,0
+        if font is None:
+            font = PIL.ImageFont.truetype("assets/arial.ttf", font_size)
         if type(font) != PIL.ImageFont.FreeTypeFont:raise ValueError("Font type expected to be Pillow Font eg : h2_font=   ImageFont.truetype('TimesNewRoman/times new roman.ttf', font_size)'")
         if not isinstance(data,list): raise ValueError("data must be a list eg: [(1,2),(2,3)]")
         if xend is not None and xend < x: raise ValueError('xend must be greater than x')
@@ -101,7 +104,6 @@ class Drawtable:
                 if self.columns_width is None:
                     self.__width_per_cell = [int(width/self.number_of_columns)]*len(self.data)
         
-        print(self.__width_per_cell,'w')
           
     def __repr__(self):
         return "Drawtable"
