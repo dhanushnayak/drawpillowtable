@@ -40,7 +40,7 @@ class Drawtable:
     """
     def __init__(self,data,x,y,font=None,font_size=16,drawsheet=None,xend=None,line_spacer=20,margin_text=10,line_width=2,return_params=False,**kwargs):
         
-        self.__version__ = "0.1.7"
+        self.__version__ = "0.1.8"
 
         image_width,image_height=0,0
         if font is None:
@@ -66,6 +66,11 @@ class Drawtable:
         self.header_color = kwargs.get("header_color","#000000")
         self.text_color = kwargs.get("text_color","#000000")
         self.save = kwargs.get("save",None)
+        self.align = kwargs.get("text_align",'center')
+        self.anchor = kwargs.get("text_anchor","la")
+        self.spacing = kwargs.get("text_spacing",0)
+        self.stroke_width = kwargs.get('text_stroke_width',0)
+        self.stroke_fill = kwargs.get("text_stroke_width",'black')
         self.return_params  = return_params
         self.font = font
         self.new_img=False
@@ -148,7 +153,7 @@ class Drawtable:
     def __draw_text(self,xy, text="text",font=None,fill=None):
         if font is None: font = self.font
         if fill is None : fill = self.text_color   
-        return self.__draw.text(xy=xy,text=f"{text}",fill=fill,font=font,align='center')
+        return self.__draw.text(xy=xy,text=f"{text}",fill=fill,font=font,anchor=self.anchor, spacing=self.spacing, align=self.align,stroke_width=self.stroke_width,stroke_fill=self.stroke_fill)
         
         
     def __draw_line(self,x1,y1,x2,y2):
