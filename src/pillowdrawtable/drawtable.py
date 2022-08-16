@@ -44,7 +44,7 @@ class Drawtable:
     """
     def __init__(self,data,x,y,font=None,font_size=16,drawsheet=None,xend=None,line_spacer=20,margin_text=10,line_width=2,return_params=False,**kwargs):
         
-        self.__version__ = "0.1.8"
+        self.__version__ = "0.1.9"
 
         image_width,image_height=0,0
         if font is None:
@@ -74,7 +74,7 @@ class Drawtable:
         self.anchor = kwargs.get("text_anchor","la")
         self.spacing = kwargs.get("text_spacing",0)
         self.stroke_width = kwargs.get('text_stroke_width',0)
-        self.stroke_fill = kwargs.get("text_stroke_width",'black')
+        self.stroke_fill = kwargs.get("text_stroke_fill",'black')
         self.return_params  = return_params
         self.font = font
         self.new_img=False
