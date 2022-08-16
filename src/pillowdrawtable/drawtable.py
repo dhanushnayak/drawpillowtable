@@ -40,7 +40,7 @@ class Drawtable:
     """
     def __init__(self,data,x,y,font=None,font_size=16,drawsheet=None,xend=None,line_spacer=20,margin_text=10,line_width=2,return_params=False,**kwargs):
         
-        self.__version__ = "0.1.6"
+        self.__version__ = "0.1.7"
 
         image_width,image_height=0,0
         if font is None:
@@ -55,7 +55,6 @@ class Drawtable:
                 
             except:
                 raise AttributeError("Provide Draw Sheet or Provide image_width and image_height to draw on new sheet")
-        #self.frame  kwargs.get("frame",True)
         self.outer_frame = kwargs.get("frame",True)
         self.inner_frame = kwargs.get("grid",True)
         self.columns_frame = kwargs.get("columngrid",True)
