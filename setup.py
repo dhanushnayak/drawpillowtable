@@ -21,7 +21,6 @@ setup(
     keywords='Pillow,Table',
     install_requires=[
           'Pillow>8',
-          "json"
       ],
     include_package_data=True,
     package_data={'': ['*.ttf']},
