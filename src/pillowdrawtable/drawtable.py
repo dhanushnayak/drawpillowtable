@@ -36,7 +36,11 @@ class Drawtable:
                 text_color(hexcolor)(color name)(default: black): color for text in cell
                 header_color(hexcolor)(color name)(default: black): color for columns in cell
                 save(filename) (default: None): if trying to draw on new image to save a image save holds the filename
-        
+            Custom text style:
+                text_align(str)(default : "center")  helps to align text
+                text_spacing(int)(default : 0) spacer between letter
+                text_stroke_width(int)(default : 0) stroke width of each letter
+                text_stroke_fill(hexcolor, RGB)(default : black) stroke color of letter 
     """
     def __init__(self,data,x,y,font=None,font_size=16,drawsheet=None,xend=None,line_spacer=20,margin_text=10,line_width=2,return_params=False,**kwargs):
         
