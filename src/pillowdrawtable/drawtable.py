@@ -2,7 +2,7 @@ from PIL import Image,ImageDraw,ImageFont
 import textwrap
 from PIL import *
 import PIL
-from _version import __version__
+from .version import __version__
 class Drawtable:
     """
     Use to create or draw table using PILLOW
