@@ -2,6 +2,7 @@ from PIL import Image,ImageDraw,ImageFont
 import textwrap
 from PIL import *
 import PIL
+from _version import __version__
 class Drawtable:
     """
     Use to create or draw table using PILLOW
@@ -44,7 +45,7 @@ class Drawtable:
     """
     def __init__(self,data,x,y,font=None,font_size=16,drawsheet=None,xend=None,line_spacer=20,margin_text=10,line_width=2,return_params=False,**kwargs):
         
-        self.__version__ = "0.1.9"
+        self.__version__ = __version__
 
         image_width,image_height=0,0
         if font is None:
@@ -52,6 +53,9 @@ class Drawtable:
         if type(font) != PIL.ImageFont.FreeTypeFont:raise ValueError("Font type expected to be Pillow Font eg : h2_font=   ImageFont.truetype('TimesNewRoman/times new roman.ttf', font_size)'")
         if not isinstance(data,list): raise ValueError("data must be a list eg: [(1,2),(2,3)]")
         if xend is not None and xend < x: raise ValueError('xend must be greater than x')
+        if drawsheet is not None:
+            if not isinstance(drawsheet,PIL.ImageDraw.ImageDraw):
+                drawsheet = ImageDraw.Draw(drawsheet)
         if drawsheet is None:
             try:
                 image_width = kwargs['image_width']
@@ -96,7 +100,7 @@ class Drawtable:
                     self.__width_per_cell = [int(width*wi) for wi in self.columns_width]
                 else: raise ValueError("columnwidth must be list eg: [0.1,0.9] and sum must be 1")
             if self.columns_width is None:
-                self.__width_per_cell = [int(width/self.number_of_columns)]*len(self.data)
+                self.__width_per_cell = [int(width/self.number_of_columns)]*len(self.data[0])
         else:
             if image_height!=0 and image_width!=0: 
                 if self.xend is not None and self.xend>image_width: raise ValueError("xend must be lesser than image_width")
@@ -110,7 +114,7 @@ class Drawtable:
                         self.__width_per_cell = [int(width*wi) for wi in self.columns_width]
                     else: raise ValueError("columnwidth must be list eg: [0.1,0.9] and sum must be 1")
                 if self.columns_width is None:
-                    self.__width_per_cell = [int(width/self.number_of_columns)]*len(self.data)
+                    self.__width_per_cell = [int(width/self.number_of_columns)]*len(self.data[0])
         
           
     def __repr__(self):
